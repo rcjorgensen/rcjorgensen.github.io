@@ -1,3 +1,7 @@
+<head>
+    <title>Notes for 70-486</title>
+</head>
+
 # Design the application architecture (15-20%)
 
 ## Plan the application layers
@@ -73,9 +77,9 @@ NOTES:
 * web.config contains an appSettings-element where custom configuration values can be placed
 * appsettings.json are JSON-files which are used in ASP.NET Core
 
-Add configuration values to appSettings and use ConfigurationManager.AppSettings to access the values at runtime.
-<br>
-web.config:
+Add configuration values to appSettings and use static method ConfigurationManager.AppSettings to access the values at runtime.
+
+#### web.config:
 ```xml
 <configuration>
   <appSettings>
@@ -85,7 +89,7 @@ web.config:
   ...
 </configuration>
 ```
-Controller:
+#### Controller:
 ```c#
 public class GreetingController : Controller
 {
@@ -98,7 +102,7 @@ public class GreetingController : Controller
 }
 ```
 
-View:
+#### View:
 ```html
 @{
     ViewBag.Title = "Index";
