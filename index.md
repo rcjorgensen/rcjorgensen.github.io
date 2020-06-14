@@ -73,7 +73,7 @@ NOTES:
 * web.config contains an appSettings-element where custom configuration values can be placed
 * appsettings.json are JSON-files which are used in ASP.NET Core
 
-Add configuration values to appSettings and use ConfigurationManager.AppSettings to use the values at runtime.
+Add configuration values to appSettings and use ConfigurationManager.AppSettings to access the values at runtime.
 <br>
 web.config:
 ```xml
