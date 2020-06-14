@@ -1,10 +1,8 @@
-# 70-486: Developing ASP.NET MVC Applications
+# Design the application architecture (15-20%)
 
-## Design the application architecture (15-20%)
+## Plan the application layers
 
-### Plan the application layers
-
-#### Plan data access
+### Plan data access
 TODOS:
 * Read up on EF6 and EF Core
 * Read https://docs.microsoft.com/en-us/ef/ef6/
@@ -18,7 +16,7 @@ Documentation for EF Core: https://docs.microsoft.com/en-us/ef/
 NOTES:
 * Database First vs. Code First vs. Model First
 
-#### Separation of Concerns
+### Separation of Concerns
 
 TODOS:
 * Read up on design patterns
@@ -29,7 +27,7 @@ Pluralsight path about DDD: https://app.pluralsight.com/paths/skills/domain-driv
 
 NOTES:
 
-#### Appropiate use of models, views, controllers, view components and dependency injection
+### Appropiate use of models, views, controllers, view components and dependency injection
 
 TODOS:
 * Watch/rewatch introductions to MVC 5 and ASP.NET Core MVC
