@@ -1,2 +1,1 @@
-# Study Guide
-## 70-486: Developing ASP.NET MVC Applications
+# 70-486: Developing ASP.NET MVC Applications Study Plan
