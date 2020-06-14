@@ -1,4 +1,4 @@
-
+<!-- Curriculum and Notes for 70-486: Developing ASP.NET MVC Applications -->
 
 
 # Design the application architecture (15-20%)
