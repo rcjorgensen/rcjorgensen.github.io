@@ -1,6 +1,5 @@
-<head>
-    <title>Notes for 70-486</title>
-</head>
+
+
 
 # Design the application architecture (15-20%)
 
