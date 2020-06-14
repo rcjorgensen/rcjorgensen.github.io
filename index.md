@@ -98,6 +98,16 @@ public class GreetingController : Controller
 }
 ```
 
+View:
+```html
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Model.Message <!-- Displays Hello!-->
+```
 ### Manage environment variables
 
 ### Implement Option objects
