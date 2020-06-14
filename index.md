@@ -16,6 +16,7 @@ Documentation for EF Core: https://docs.microsoft.com/en-us/ef/
 * Read https://docs.microsoft.com/en-us/ef/core/get-started/?tabs=netcore-cli
 
 NOTES:
+* Database First vs. Code First vs. Model First
 
 #### Separation of Concerns
 
@@ -36,3 +37,9 @@ TODOS:
   * https://app.pluralsight.com/library/courses/building-aspdotnet-core-mvc-web-applications
 
 NOTES:
+* Controllers determine how to respond to HTTP requests
+* Views contain markup that is rendered by the browser
+* The view is **only** responsible for presentation, not data access or business logic
+* The controller is responsible for building a model that is then handed over to the view
+* The model doesn't know anything about the controller or the view
+* The model is only there to transport information
