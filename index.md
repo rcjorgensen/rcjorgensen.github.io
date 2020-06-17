@@ -45,6 +45,8 @@ NOTES:
 * The model doesn't know anything about the controller or the view
 * The model is only there to transport information
 
+
+
 ### Choose between client-side and server-side processing
 
 ### Design for scalability
@@ -133,3 +135,40 @@ TODOS:
 ## Interact with the host environment
 
 ## Compose an application by using the framework pipeline
+
+# Develop the User Experience (15-20%)
+
+## Design and implement routes
+
+### Define a route to handle a URL pattern
+
+```
+.
+|-- App_Start
+    |-- BundleConfig.cs
+    |-- FilterConfig.cs
+    `-- RouteConfig.cs
+
+```
+* Default route will map the first part of the URL to the controller, the second to the action and the last to an id
+* The _defaults_ parameter makes sure that the following is true
+  * it is not necessary so supply an id i.e. both "/Home/Index/5" and "/Home/Index" are valid routes
+  * if no action is specified the Index action is used i.e. "/Home" is equivalent to "/Home/Index"
+  * if no controller is specified the Home controller is used i.e. "/" is equivalent to "/Home/Index"
+* It is not possible to specify an action without a controller, e.q. the route "/Index" would not be mapped to "/Home/Index" instead the request will probably fail because there is not "Index"-controller
+
+```c#
+public class RouteConfig 
+{
+    public static void RegisterRoutes(RouteCollection routes)
+    {
+        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+        routes.MapRoute(
+            name: "Default",
+            url: "{controller}/{action}/{id}",
+            defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+        );
+    }
+}
+```
