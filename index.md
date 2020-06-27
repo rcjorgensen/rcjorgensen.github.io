@@ -1,5 +1,4 @@
-<!-- Curriculum and Notes for 70-486: Developing ASP.NET MVC Applications -->
-
+# Curriculum and Notes for 70-486: Developing ASP.NET MVC Applications
 
 # Design the application architecture (15-20%)
 
@@ -18,6 +17,7 @@ Documentation for EF Core: <https://docs.microsoft.com/en-us/ef/>
 
 NOTES:
 * Database First vs. Code First vs. Model First
+* 
 
 ### Separation of Concerns
 
@@ -45,9 +45,71 @@ NOTES:
 * The model doesn't know anything about the controller or the view
 * The model is only there to transport information
 
-
-
 ### Choose between client-side and server-side processing
+
+TODOS:
+* Brush up on validation techniques
+* Look into building single page applications (SPA) with ASP.NET and Angular, Knockout etc.
+
+NOTES:
+* Validation:
+  * Validation can be done both on the server and on the client
+  * Server-side validation should always be in place as there are easy ways of circumventing client-side validation
+  * Client-side validation is optional as it is mostly there for improved user experience and also for preventing unneccessary calls to the server
+  * DataAnnotations can be leveraged to provide automatic validation:
+    ```c#
+      using System.ComponentModel.DataAnnotations;
+      
+      namespace MyApplication.Models 
+      {
+
+          public class SomeModel 
+          {
+             [Required]
+             [MaxLength(100)]
+             public string Name { get; set; }
+
+             [Range(1, 100)]
+             public int SomeNumber { get; set; }
+          }
+      }
+    ```
+  * Server-side validation can also be done manually in controller action methods by inspecting the model and adding errors to the `ModelState` property of the controller
+  * To check for validation errors use `ModelState.IsValid`
+    ```c#
+      public class GreetingController : Controller
+      {
+          public ActionResult DoSomething(GreetingViewModel model)
+          {
+            if (model.Message != "Hello")
+            {
+                ModelState.AddModelError("Message", "Greeting not allowed");
+            }
+
+            if (ModelState.IsValid)
+            {
+                // Do something
+
+                return RedirectToAction("Index");
+            }
+
+            // Model is not valid!
+            // Returning the view again will show the validation errors
+            return View(model);
+        }
+      }
+    ```
+  * Client-side validation can be enabled in MVC5 by referencing jquery.validation.js in the views where validation is needed:
+    ```html
+    <!-- Index.cshtml -->
+    
+    ...
+
+    @section Scripts {
+       @Scripts.Render("~/bundles/jqueryval")
+    }
+    ```
+  * Look in BundleConfig.cs to see details about how jquery.validate.js is bundled by default
 
 ### Design for scalability
 
@@ -155,7 +217,7 @@ TODOS:
   * it is not necessary so supply an id i.e. both "/Home/Index/5" and "/Home/Index" are valid routes
   * if no action is specified the Index action is used i.e. "/Home" is equivalent to "/Home/Index"
   * if no controller is specified the Home controller is used i.e. "/" is equivalent to "/Home/Index"
-* It is not possible to specify an action without a controller, e.q. the route "/Index" would not be mapped to "/Home/Index" instead the request will probably fail because there is not "Index"-controller
+* It is not possible to specify an action without a controller, e.q. the route "/Index" would **not** be mapped to "/Home/Index" instead the request will probably fail because there is not "Index"-controller
 
 ```c#
 public class RouteConfig 
